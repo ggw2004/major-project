@@ -7,13 +7,15 @@ Here I will decribe what I intend to build
 
 ## Must Have List
 
-- first thing
-- -second thing
-- etc.
+- A system to keep score
+- Have all seven tetris blocks
+- A full row deletes itself
+- The rotation of blocks when a specific key is clicked
 
 ## Nice to Have List
 
-- more stuff
-- other stuff
-- weird stuff
-- etc.
+- Observe how the block will be place once it reaches the bottom
+- The ability to hold a single block & hopefully be able to recall the block
+- A function to preview the next block
+- Speed up the decent of a block while a specific key is pressed
+- a restart button
