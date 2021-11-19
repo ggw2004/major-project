@@ -2,9 +2,7 @@
 
 ## Description
 
-Tetris. A variety of seven different block shapes fall from the "sky" in a random order. It is the "players" job
-to stack these block in a way that fulls up a full row. Once a row it full it will delete itself creating more 
-room for the next falling blocks.
+2048. In a four by four grid, slide numbered tiles, which add together once they collide, in an attempt to create a tile with the number 2048; however, the player can continue to add tiles reaching numbers greater than 2048.
 
 
 ## Must Have List
