@@ -6,10 +6,17 @@
 // - describe what you did to take this project "above and beyond"
 
 let grid;
+let gridSize = 4;
 
 
 function setup() {
-  createCanvas(windowWidth, windowHeight);
+  if (windowWidth < windowHeight) {
+    createCanvas(windowWidth * 0.8, windowWidth * 0.8);
+  }
+  else {
+    createCanvas (windowHeight * 0.8, windowHeight * 0.8);
+  }
+  
   grid = [
     [0,0,0,0], 
     [0,0,0,0], 
@@ -23,13 +30,22 @@ function setup() {
 }
 
 function draw() {
-  background(220);
+  background(255);
+  let cellWidth = width / 4;
+  let cellHeight = height / 4;
+  for (let i = 0; i < gridSize; i ++) {
+    for (let j = 0; j < gridSize; j ++ ){
+      noFill();
+      strokeWeight(2);
+      stroke(0);
+      rect(i * cellWidth, j * cellHeight, cellWidth, cellHeight);
+    }
+  }
 }
 
 
 function addNumber() {
   let options = [];
-  let gridSize = 4;
   for (let i = 0; i < gridSize; i ++) {
     for (let j = 0; j < gridSize; j ++ ){
       options.push({
@@ -50,3 +66,4 @@ function addNumber() {
     }
   }
 }
+
