@@ -20,6 +20,7 @@ function setup() {
   else {
     createCanvas (windowHeight * 0.8, windowHeight * 0.8);
   }
+
   
   grid = [
     [0,0,0,0], 
@@ -76,11 +77,12 @@ function create2DArray() {
       stroke(0);
       rect(i * cellWidth, j * cellHeight, cellWidth, cellHeight);
       if (grid[i][j] !== 0) {
+        // console.log("work");
         textAlign(CENTER);
         textSize(letterSize);
         fill(0);
         noStroke();
-        text("4", i * width - width / 2, j * width - width / 2);
+        text("2", i * cellWidth - cellWidth / 2, j * cellWidth - cellWidth / 2);
       }
     }
   }
