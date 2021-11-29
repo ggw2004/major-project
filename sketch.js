@@ -7,9 +7,13 @@
 
 let grid;
 let gridSize = 4;
+let cellWidth;
+let cellHeight;
+let letterSize = 64;
 
 
 function setup() {
+  // create canvas based on the length of the shortest part of the screen
   if (windowWidth < windowHeight) {
     createCanvas(windowWidth * 0.8, windowWidth * 0.8);
   }
@@ -31,19 +35,15 @@ function setup() {
 
 function draw() {
   background(255);
-  let cellWidth = width / 4;
-  let cellHeight = height / 4;
-  for (let i = 0; i < gridSize; i ++) {
-    for (let j = 0; j < gridSize; j ++ ){
-      noFill();
-      strokeWeight(2);
-      stroke(0);
-      rect(i * cellWidth, j * cellHeight, cellWidth, cellHeight);
-    }
-  }
+  cellWidth = width / 4;
+  cellHeight = height / 4;
+
+  create2DArray();
+
+
 }
 
-
+// add the first two initiall numbers
 function addNumber() {
   let options = [];
   for (let i = 0; i < gridSize; i ++) {
@@ -54,16 +54,34 @@ function addNumber() {
       });
     }
   }
-
+  // 50:50 chance of it displaying a 2 or a 4
   if (options.length > 0) { 
-    let spot = random (options);
+    let numberLocation = random (options);
     let r = random(1);
     if (r > 0.5) {
-      grid[spot.x][spot.y] = 2;
+      grid[numberLocation.x][numberLocation.y] = 2;
     }
     else {
-      grid[spot.x][spot.y] = 4;
+      grid[numberLocation.x][numberLocation.y] = 4;
     }
   }
 }
 
+function create2DArray() {
+  // create & and display grid
+  for (let i = 0; i < gridSize; i ++) {
+    for (let j = 0; j < gridSize; j ++ ){
+      noFill();
+      strokeWeight(2);
+      stroke(0);
+      rect(i * cellWidth, j * cellHeight, cellWidth, cellHeight);
+      if (grid[i][j] !== 0) {
+        textAlign(CENTER);
+        textSize(letterSize);
+        fill(0);
+        noStroke();
+        text("4", i * width - width / 2, j * width - width / 2);
+      }
+    }
+  }
+}
