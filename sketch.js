@@ -7,6 +7,8 @@
 
 let grid;
 let gridSize = 4;
+let rows = 4;
+let cols = 4;
 let cellWidth;
 let cellHeight;
 let letterSize = 64;
@@ -58,12 +60,16 @@ function addNumber() {
   // 50:50 chance of it displaying a 2 or a 4
   if (options.length > 0) { 
     let numberLocation = random (options);
-    let r = random(1);
+    let r = random(0,1);
+    console.log(r);
+
     if (r > 0.5) {
       grid[numberLocation.x][numberLocation.y] = 2;
+      console.log("thing = 2");
     }
     else {
       grid[numberLocation.x][numberLocation.y] = 4;
+      console.log("thing = 4");
     }
   }
 }
@@ -75,14 +81,13 @@ function create2DArray() {
       noFill();
       strokeWeight(2);
       stroke(0);
-      rect(i * cellWidth, j * cellHeight, cellWidth, cellHeight);
+      rect(j * cellWidth, i * cellHeight, cellWidth, cellHeight);
       if (grid[i][j] !== 0) {
-        // console.log("work");
         textAlign(CENTER);
         textSize(letterSize);
         fill(0);
         noStroke();
-        text("2", i * cellWidth - cellWidth / 2, j * cellWidth - cellWidth / 2);
+        text(grid[i][j], j * cellWidth + cellWidth / 2, i * cellHeight + cellHeight / 2);
       }
     }
   }
