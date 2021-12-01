@@ -59,10 +59,22 @@ function addNumber() {
   }
   // 50:50 chance of it displaying a 2 or a 4
   if (options.length > 0) { 
-    let numberLocation = random (options);
+    // function varibales
+    let isZero = false;
+    let numberLocation;
     let r = random(0,1);
+
+    // check to not place in a cell with an existing number
+    while (!isZero) {
+      numberLocation = random (options);
+      if (grid[numberLocation.x][numberLocation.y] === 0) {
+        isZero = true;
+      }
+    }
+
     console.log(r);
 
+    // place 2 or a 4
     if (r > 0.5) {
       grid[numberLocation.x][numberLocation.y] = 2;
       console.log("thing = 2");
