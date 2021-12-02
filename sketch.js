@@ -31,11 +31,13 @@ function setup() {
     [0,0,0,0]
   ];
   console.table(grid);
-  addNumber();
-  addNumber();
+  spawnNumber();
+  spawnNumber();
   console.table(grid);
 }
 
+
+// main game loop
 function draw() {
   background(255);
   cellWidth = width / 4;
@@ -46,8 +48,17 @@ function draw() {
 
 }
 
+function keyPressed() {
+  if (key === " ") {
+    for (let i = 0; i < gridSize; i++) {
+      grid[i] = slide(grid[i]);
+    }
+    spawnNumber();
+  }
+}
+
 // add the first two initiall numbers
-function addNumber() {
+function spawnNumber() {
   let options = [];
   for (let i = 0; i < gridSize; i ++) {
     for (let j = 0; j < gridSize; j ++ ){
@@ -63,6 +74,18 @@ function addNumber() {
     let isZero = false;
     let numberLocation;
     let r = random(0,1);
+    let emptySpace = 16;
+
+
+    // check if an empty space exists
+    for (let i = 0; i < gridSize; i ++) {
+      for (let j = 0; j < gridSize; j ++ ){
+        if grid[i][j] === 0 {
+
+        }
+      }
+    }
+
 
     // check to not place in a cell with an existing number
     while (!isZero) {
@@ -74,8 +97,9 @@ function addNumber() {
 
     console.log(r);
 
+
     // place 2 or a 4
-    if (r > 0.5) {
+    if (r > 0.25) {
       grid[numberLocation.x][numberLocation.y] = 2;
       console.log("thing = 2");
     }
@@ -84,6 +108,16 @@ function addNumber() {
       console.log("thing = 4");
     }
   }
+}
+
+
+
+function slide(row) {
+  let newArray = row.filter(val => val);
+  let missing = 4 - newArray.length;
+  let zeros = Array(missing).fill(0);
+  newArray = newArray.concat(zeros);
+  return newArray;
 }
 
 function create2DArray() {
@@ -95,7 +129,7 @@ function create2DArray() {
       stroke(0);
       rect(j * cellWidth, i * cellHeight, cellWidth, cellHeight);
       if (grid[i][j] !== 0) {
-        textAlign(CENTER);
+        textAlign(CENTER, CENTER);
         textSize(letterSize);
         fill(0);
         noStroke();
