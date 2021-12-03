@@ -57,7 +57,7 @@ function keyPressed() {
   }
 }
 
-// add the first two initiall numbers
+// spawn numbers in empty cells
 function spawnNumber() {
   let options = [];
   for (let i = 0; i < gridSize; i ++) {
@@ -78,16 +78,19 @@ function spawnNumber() {
 
 
     // check if an empty space exists
-    for (let i = 0; i < gridSize; i ++) {
-      for (let j = 0; j < gridSize; j ++ ){
-        if grid[i][j] === 0 {
+    // for (let i = 0; i < gridSize; i ++) {
+    //   for (let j = 0; j < gridSize; j ++ ){
+    //     if (grid[i][j] === 0) {
+    //       emptySpace -=1;
+    //     }
+    //     if (emptySpace === 0) {
+    //       console.log("gameover");
+    //     }
+    //   }
+    // }
 
-        }
-      }
-    }
 
-
-    // check to not place in a cell with an existing number
+    // check if a number exist in the cell
     while (!isZero) {
       numberLocation = random (options);
       if (grid[numberLocation.x][numberLocation.y] === 0) {
@@ -111,13 +114,27 @@ function spawnNumber() {
 }
 
 
-
+// move numbers to farthest most point of the specified direction until if reaches an obstruction (the end of the grid or a number it is not equivalent to)
 function slide(row) {
   let newArray = row.filter(val => val);
   let missing = 4 - newArray.length;
   let zeros = Array(missing).fill(0);
   newArray = newArray.concat(zeros);
   return newArray;
+}
+
+// add numbers that are equivalent when they collide
+function addNumber(row) {
+  for(let i = 3; i >= 0; i--) {
+    let a = row[i];
+    let b = row[i -1];
+    if (a === b) {
+      row[i] = a + b;
+      row[i - 1] = 0;
+      break;
+    }
+  }
+  return row;
 }
 
 function create2DArray() {
