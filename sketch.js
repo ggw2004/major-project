@@ -52,6 +52,7 @@ function keyPressed() {
   if (key === " ") {
     for (let i = 0; i < gridSize; i++) {
       grid[i] = slide(grid[i]);
+      grid[i] = addNumber(grid[i]);
     }
     spawnNumber();
   }
@@ -119,7 +120,7 @@ function slide(row) {
   let newArray = row.filter(val => val);
   let missing = 4 - newArray.length;
   let zeros = Array(missing).fill(0);
-  newArray = newArray.concat(zeros);
+  newArray = zeros.concat(newArray);
   return newArray;
 }
 
