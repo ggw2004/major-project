@@ -51,12 +51,21 @@ function draw() {
 function keyPressed() {
   if (key === " ") {
     for (let i = 0; i < gridSize; i++) {
-      grid[i] = slide(grid[i]);
-      grid[i] = addNumber(grid[i]);
+      row = operate(row);
+
     }
     spawnNumber();
   }
 }
+
+function operate(row) {
+  row = slide(row);
+  row = addNumber(row);
+  row = slide(row);
+  row = addNumber(row);
+  return row;
+}
+
 
 // spawn numbers in empty cells
 function spawnNumber() {
@@ -75,7 +84,7 @@ function spawnNumber() {
     let isZero = false;
     let numberLocation;
     let r = random(0,1);
-    let emptySpace = 16;
+    // let emptySpace = 16;
 
 
     // check if an empty space exists
@@ -103,10 +112,12 @@ function spawnNumber() {
 
 
     // place 2 or a 4
+    // place 2
     if (r > 0.25) {
       grid[numberLocation.x][numberLocation.y] = 2;
       console.log("thing = 2");
     }
+    // place 4
     else {
       grid[numberLocation.x][numberLocation.y] = 4;
       console.log("thing = 4");
@@ -138,14 +149,15 @@ function addNumber(row) {
   return row;
 }
 
+// create & and display grid
 function create2DArray() {
-  // create & and display grid
   for (let i = 0; i < gridSize; i ++) {
     for (let j = 0; j < gridSize; j ++ ){
       noFill();
       strokeWeight(2);
       stroke(0);
       rect(j * cellWidth, i * cellHeight, cellWidth, cellHeight);
+      // display numbers
       if (grid[i][j] !== 0) {
         textAlign(CENTER, CENTER);
         textSize(letterSize);
