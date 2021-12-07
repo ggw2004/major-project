@@ -48,10 +48,14 @@ function draw() {
 
 }
 
-function keyPressed() {
+function keyPressed(row) {  // LET MR. SCHELLENBERG KNOW THAT THE VIDEO DID NOT HAVE ROW IN THE BRACKETS
   if (key === " ") {
     for (let i = 0; i < gridSize; i++) {
-      row = operate(row);
+      // row = operate(row);
+      // ask why the code below works but not when i call the function operate
+      grid[i] = slide(grid[i]);
+      grid[i] = addNumber(grid[i]);
+      grid[i] = slide(grid[i]);
 
     }
     spawnNumber();
@@ -62,7 +66,6 @@ function operate(row) {
   row = slide(row);
   row = addNumber(row);
   row = slide(row);
-  row = addNumber(row);
   return row;
 }
 
@@ -143,7 +146,7 @@ function addNumber(row) {
     if (a === b) {
       row[i] = a + b;
       row[i - 1] = 0;
-      break;
+      // break;
     }
   }
   return row;
