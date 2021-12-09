@@ -50,27 +50,58 @@ function draw() {
 
 function keyPressed() {  // LET MR. SCHELLENBERG KNOW THAT THE VIDEO DID NOT HAVE ROW IN THE BRACKETS
   if (key === " ") {
-    for (let i = 0; i < gridSize; i++) {
-      operate(i);
-      // grid[i] = row;
-      // ask why the code below works but not when i call the function operate
-      // grid[i] = slide(grid[i]);
-      // grid[i] = addNumber(grid[i]);
-      // grid[i] = slide(grid[i]);
 
+    let newCopy = gridCopy(grid);
+    for (let i = 0; i < gridSize; i++) {
+      // operate(i);  can also use this to call the function; however, use the code that is commented out instead
+      grid[i] = operate(grid[i]);
     }
-    spawnNumber();
+    let changed = compareGrids(newCopy, grid);
+    if (changed) {
+      spawnNumber();
+    }
   }
 }
 
-function operate(i) {
-  // row = slide(row);
-  // row = addNumber(row);
-  // row = slide(row);
-  // return row;
-  grid[i] = slide(grid[i]);
-  grid[i] = addNumber(grid[i]);
-  grid[i] = slide(grid[i]);
+function compareGrids(a , b) {
+  for (let i = 0; i < gridSize; i ++) {
+    for (let j = 0; j < gridSize; j ++ ){
+      if (a[i][j] !== b[i][j]) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+function gridCopy(grid) {
+  newCopy = [
+    [0,0,0,0], 
+    [0,0,0,0], 
+    [0,0,0,0], 
+    [0,0,0,0]
+  ];
+
+  for (let i = 0; i < gridSize; i ++) {
+    for (let j = 0; j < gridSize; j ++ ){
+      newCopy[i][j] = grid[i][j];
+    }
+  }
+
+  return newCopy;
+}
+
+function operate(row) {  // depending on the call function method use the objects in the brackets is either i or row
+  // call function method grid[i] = operate(grid[i]);
+  row = slide(row);
+  row = addNumber(row);
+  row = slide(row);
+  return row;
+
+  //call function method operate(i);
+  // grid[i] = slide(grid[i]);
+  // grid[i] = addNumber(grid[i]);
+  // grid[i] = slide(grid[i]);
 }
 
 
