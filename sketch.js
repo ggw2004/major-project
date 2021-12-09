@@ -48,25 +48,29 @@ function draw() {
 
 }
 
-function keyPressed(row) {  // LET MR. SCHELLENBERG KNOW THAT THE VIDEO DID NOT HAVE ROW IN THE BRACKETS
+function keyPressed() {  // LET MR. SCHELLENBERG KNOW THAT THE VIDEO DID NOT HAVE ROW IN THE BRACKETS
   if (key === " ") {
     for (let i = 0; i < gridSize; i++) {
-      // row = operate(row);
+      operate(i);
+      // grid[i] = row;
       // ask why the code below works but not when i call the function operate
-      grid[i] = slide(grid[i]);
-      grid[i] = addNumber(grid[i]);
-      grid[i] = slide(grid[i]);
+      // grid[i] = slide(grid[i]);
+      // grid[i] = addNumber(grid[i]);
+      // grid[i] = slide(grid[i]);
 
     }
     spawnNumber();
   }
 }
 
-function operate(row) {
-  row = slide(row);
-  row = addNumber(row);
-  row = slide(row);
-  return row;
+function operate(i) {
+  // row = slide(row);
+  // row = addNumber(row);
+  // row = slide(row);
+  // return row;
+  grid[i] = slide(grid[i]);
+  grid[i] = addNumber(grid[i]);
+  grid[i] = slide(grid[i]);
 }
 
 
@@ -87,21 +91,6 @@ function spawnNumber() {
     let isZero = false;
     let numberLocation;
     let r = random(0,1);
-    // let emptySpace = 16;
-
-
-    // check if an empty space exists
-    // for (let i = 0; i < gridSize; i ++) {
-    //   for (let j = 0; j < gridSize; j ++ ){
-    //     if (grid[i][j] === 0) {
-    //       emptySpace -=1;
-    //     }
-    //     if (emptySpace === 0) {
-    //       console.log("gameover");
-    //     }
-    //   }
-    // }
-
 
     // check if a number exist in the cell
     while (!isZero) {
@@ -110,9 +99,6 @@ function spawnNumber() {
         isZero = true;
       }
     }
-
-    console.log(r);
-
 
     // place 2 or a 4
     // place 2
@@ -127,7 +113,6 @@ function spawnNumber() {
     }
   }
 }
-
 
 // move numbers to farthest most point of the specified direction until if reaches an obstruction (the end of the grid or a number it is not equivalent to)
 function slide(row) {
