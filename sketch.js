@@ -48,7 +48,17 @@ function draw() {
 
 }
 
-function keyPressed() {  // LET MR. SCHELLENBERG KNOW THAT THE VIDEO DID NOT HAVE ROW IN THE BRACKETS
+// Movement Keys
+function keyPressed() {
+  // Move up
+  if (keyCode === 38 || keyCode === 87) { // 37 = UP_ARROW and 87 = w
+
+  }
+
+  else if (keyCode === 40 || keyCode === 83) { // 40 = DOWN_ARROW and 83 = d
+
+  }
+
   if (key === " ") {
 
     let newCopy = gridCopy(grid);
@@ -75,7 +85,7 @@ function compareGrids(a , b) {
 }
 
 function gridCopy(grid) {
-  newCopy = [
+  let newCopy = [
     [0,0,0,0], 
     [0,0,0,0], 
     [0,0,0,0], 
