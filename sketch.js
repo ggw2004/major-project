@@ -172,7 +172,6 @@ function addNumber(row) {
     if (a === b) {
       row[i] = a + b;
       row[i - 1] = 0;
-      // break;
     }
   }
   return row;
