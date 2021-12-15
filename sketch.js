@@ -13,6 +13,8 @@ let cellWidth;
 let cellHeight;
 let letterSize = 64;
 
+let keyState;
+
 
 function setup() {
   // create canvas based on the length of the shortest part of the screen
@@ -158,11 +160,13 @@ function spawnNumber() {
 // move numbers to farthest most point of the specified direction until if reaches an obstruction (the end of the grid or a number it is not equivalent to)
 function slide(row) {
   let newArray = row.filter(val => val);
-  let missing = 4 - newArray.length;
+  let missing = gridSize - newArray.length;
   let zeros = Array(missing).fill(0);
   newArray = zeros.concat(newArray);
   return newArray;
 }
+
+// think of nested for loop and move cells as needed
 
 // add numbers that are equivalent when they collide
 function addNumber(row) {
