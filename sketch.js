@@ -61,6 +61,8 @@ function keyPressed() {
 
   }
 
+  // horizontal movement in for loop change j co-ordinates until there is a zero in the next cell
+
   if (key === " ") {
 
     let newCopy = gridCopy(grid);
@@ -164,6 +166,8 @@ function slide(row) {
   let zeros = Array(missing).fill(0);
   newArray = zeros.concat(newArray);
   return newArray;
+
+
 }
 
 // think of nested for loop and move cells as needed
