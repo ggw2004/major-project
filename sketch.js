@@ -5,13 +5,16 @@
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
 
-let grid;
+let grid = [];
 let gridSize = 4;
 let rows = 4;
 let cols = 4;
 let cellWidth;
 let cellHeight;
 let letterSize = 64;
+
+let direction;
+
 
 let keyState;
 
@@ -26,16 +29,20 @@ function setup() {
   }
 
   
-  grid = [
-    [0,0,0,0], 
-    [0,0,0,0], 
-    [0,0,0,0], 
-    [0,0,0,0]
-  ];
+  createGrid();
+  // grid = [
+  //   [0,0,0,0], 
+  //   [0,0,0,0], 
+  //   [0,0,0,0], 
+  //   [0,0,0,0]
+  // ];
   console.table(grid);
   spawnNumber();
   spawnNumber();
   console.table(grid);
+
+
+  direction = createVector(1, 0);
 }
 
 
@@ -50,11 +57,21 @@ function draw() {
 
 }
 
+// create grid
+function createGrid() {
+  for (let i = 0; i < gridSize; i++) {
+    grid[i] = [];
+    for (let j = 0; j < gridSize; j++) {
+      grid[i][j] = 0;
+    }
+  }
+}
+
 // Movement Keys
 function keyPressed() {
   // Move up
   if (keyCode === 38 || keyCode === 87) { // 37 = UP_ARROW and 87 = w
-
+    verticalMove(grid);
   }
 
   else if (keyCode === 40 || keyCode === 83) { // 40 = DOWN_ARROW and 83 = d
@@ -89,12 +106,14 @@ function compareGrids(a , b) {
 }
 
 function gridCopy(grid) {
-  let newCopy = [
-    [0,0,0,0], 
-    [0,0,0,0], 
-    [0,0,0,0], 
-    [0,0,0,0]
-  ];
+  let newCopy = [];
+
+  for (let i = 0; i < gridSize; i++) {
+    newCopy[i] = [];
+    for (let j = 0; j < gridSize; j++) {
+      newCopy[i][j] = 0;
+    }
+  }
 
   for (let i = 0; i < gridSize; i ++) {
     for (let j = 0; j < gridSize; j ++ ){
@@ -117,6 +136,17 @@ function operate(row) {  // depending on the call function method use the object
   // grid[i] = addNumber(grid[i]);
   // grid[i] = slide(grid[i]);
 }
+// vertical move
+// function verticalMove(grid) {
+//   for (let i = 0; i < gridSize; i ++) {
+//     for (let j = 0; j < gridSize; j ++ ){
+//       while (i + 1 !== 0) {
+//         grid[i+1][j];
+//       }
+//     }
+//   }
+// this is an infinite loop. I am setting i to zero at the start. Prior to the while loop you need to create variable for what i is to compare it.
+// }
 
 
 // spawn numbers in empty cells
@@ -166,8 +196,6 @@ function slide(row) {
   let zeros = Array(missing).fill(0);
   newArray = zeros.concat(newArray);
   return newArray;
-
-
 }
 
 // think of nested for loop and move cells as needed
