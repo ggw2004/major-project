@@ -137,16 +137,18 @@ function operate(row) {  // depending on the call function method use the object
   // grid[i] = slide(grid[i]);
 }
 // vertical move
-// function verticalMove(grid) {
-//   for (let i = 0; i < gridSize; i ++) {
-//     for (let j = 0; j < gridSize; j ++ ){
-//       while (i + 1 !== 0) {
-//         grid[i+1][j];
-//       }
-//     }
-//   }
+function verticalMove(grid) {
+  for (let i = 0; i < gridSize; i ++) {
+    for (let j = 0; j < gridSize; j ++ ){
+      let compareVariable = i;
+      while (compareVariable + 1 !== 0) {
+        grid[i+1][j] = grid[i][j];
+      }
+    }
+  }
+  return grid();
 // this is an infinite loop. I am setting i to zero at the start. Prior to the while loop you need to create variable for what i is to compare it.
-// }
+}
 
 
 // spawn numbers in empty cells
