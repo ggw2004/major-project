@@ -124,7 +124,7 @@ function gridCopy(grid) {
   return newCopy;
 }
 
-function operate(row) {  // depending on the call function method use the objects in the brackets is either i or row
+function operate(row) {  // depending on the call function method used the objects in the brackets is either i or row
   // call function method grid[i] = operate(grid[i]);
   row = slide(row);
   row = addNumber(row);
@@ -138,15 +138,18 @@ function operate(row) {  // depending on the call function method use the object
 }
 // vertical move
 function verticalMove(grid) {
-  for (let i = 0; i < gridSize; i ++) {
+  for (let i = 1; i < gridSize; i ++) {
     for (let j = 0; j < gridSize; j ++ ){
-      let compareVariable = i;
-      while (compareVariable + 1 !== 0) {
-        grid[i+1][j] = grid[i][j];
+      if (grid[i][j] !==0) {
+        while (grid[i - 1][j] !== 0) {
+          let temporaryVariable = grid[i][j];
+          grid[i][j] = grid[i-1][j];
+          grid[i-1][j] = temporaryVariable;
+        }
       }
     }
   }
-  return grid();
+  return grid;
 // this is an infinite loop. I am setting i to zero at the start. Prior to the while loop you need to create variable for what i is to compare it.
 }
 
