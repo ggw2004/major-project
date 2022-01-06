@@ -41,8 +41,6 @@ function setup() {
   spawnNumber();
   console.table(grid);
 
-
-  direction = createVector(1, 0);
 }
 
 
@@ -71,7 +69,7 @@ function createGrid() {
 function keyPressed() {
   // Move up
   if (keyCode === 38 || keyCode === 87) { // 37 = UP_ARROW and 87 = w
-    verticalMove(grid);
+    moveUp(grid);
   }
 
   else if (keyCode === 40 || keyCode === 83) { // 40 = DOWN_ARROW and 83 = d
@@ -137,21 +135,28 @@ function operate(row) {  // depending on the call function method used the objec
   // grid[i] = slide(grid[i]);
 }
 // vertical move
-function verticalMove(grid) {
-  for (let i = 1; i < gridSize; i ++) {
-    for (let j = 0; j < gridSize; j ++ ){
-      if (grid[i][j] !==0) {
-        while (grid[i - 1][j] !== 0) {
-          let temporaryVariable = grid[i][j];
-          grid[i][j] = grid[i-1][j];
-          grid[i-1][j] = temporaryVariable;
-        }
+function moveUp(grid) {
+  for (let y = 1; y < gridSize; y ++) {
+    for (let x = 0; x < gridSize; x ++ ){
+      if (grid[y][x] !==0) {
+        let thisY = y;
+        let thisX = x;
+        while (thisY >= 1 && grid[thisY-1][thisX] === 0) { // does not like thisX or thisY
+          // swapWithAbove
+          grid[thisY -1 ][thisX] = grid[thisY][thisX];
+          grid[thisY][thisX] = 0;
+
+          //change thisY
+          thisY = thisY - 1;
+        }        
       }
     }
   }
   return grid;
-// this is an infinite loop. I am setting i to zero at the start. Prior to the while loop you need to create variable for what i is to compare it.
+
 }
+
+
 
 
 // spawn numbers in empty cells
