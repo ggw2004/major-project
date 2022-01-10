@@ -67,12 +67,26 @@ function createGrid() {
 
 // Movement Keys
 function keyPressed() {
-  // Move up
+  // Key to move up
   if (keyCode === 38 || keyCode === 87) { // 37 = UP_ARROW and 87 = w
-    moveUp(grid);
+    grid = moveUp(grid);
   }
 
-  else if (keyCode === 40 || keyCode === 83) { // 40 = DOWN_ARROW and 83 = d
+  // Key to move down
+  else if (keyCode === 40 || keyCode === 83) { // 40 = DOWN_ARROW and 83 = s
+    grid = moveDown(grid);
+  }
+
+  // Key to move right
+  if (keyCode === 39 || keyCode === 68) { // 39 = RIGHT_ARROW and 68 = d
+    keyState = "right movement";
+    moveHorizontal();
+  }
+
+  // Key to move left
+  if (keyCode === 37 || keyCode === 65) { // 37 = LEFT_ARROW and 65 = w
+    keyState = "left movement";
+    moveHorizontal();
 
   }
 
@@ -82,7 +96,6 @@ function keyPressed() {
 
     let newCopy = gridCopy(grid);
     for (let i = 0; i < gridSize; i++) {
-      // operate(i);  can also use this to call the function; however, use the code that is commented out instead
       grid[i] = operate(grid[i]);
     }
     let changed = compareGrids(newCopy, grid);
@@ -124,17 +137,36 @@ function gridCopy(grid) {
 
 function operate(row) {  // depending on the call function method used the objects in the brackets is either i or row
   // call function method grid[i] = operate(grid[i]);
-  row = slide(row);
-  row = addNumber(row);
-  row = slide(row);
-  return row;
+
+  if (keyState === "right movement") {
+    row = moveRight(row);
+    row = addNumber(row);
+    row = moveRight(row);
+    return row;
+  }
+
+  if (keyState === "left movement") {
+    row = moveLeft(row);
+    row = addNumber(row);
+    row = moveLeft(row);
+    return row;
+  }
+
+
+  // row = slide(row);
+  // row = addNumber(row);
+  // row = slide(row);
+  // return row;
 
   //call function method operate(i);
   // grid[i] = slide(grid[i]);
   // grid[i] = addNumber(grid[i]);
   // grid[i] = slide(grid[i]);
 }
-// vertical move
+
+
+// vertical moves
+// move up
 function moveUp(grid) {
   for (let y = 1; y < gridSize; y ++) {
     for (let x = 0; x < gridSize; x ++ ){
@@ -153,9 +185,59 @@ function moveUp(grid) {
     }
   }
   return grid;
-
 }
 
+// move down
+function moveDown(grid) {
+  for (let y=1; y >= 0; y--) {   
+    for (let x=3; x >= 0; x--) {
+      if (grid[y][x] !== 0) {
+        let thisY = y;  
+        let thisX = x;
+        while (thisY >= 0 && thisY + 1 <= 3 && grid[thisY+1][thisX] === 0) { // need to add "&& thisY + 1 <=2" in the while loop
+          // swap with below
+          grid[thisY + 1][thisX] = grid[thisY][thisX];
+          grid[thisY][thisX] = 0;
+
+          //change thisY
+          thisY = thisY + 1;
+        }
+      }
+    }
+  }
+  return grid;
+}
+
+// Horizontal moves
+
+// Horizontall movement call function
+function moveHorizontal() {
+  let newCopy = gridCopy(grid);
+  for (let i = 0; i < gridSize; i++) {
+    grid[i] = operate(grid[i]);
+  }
+  let changed = compareGrids(newCopy, grid);
+  if (changed) {
+    spawnNumber();
+  } 
+}
+
+// move right
+function moveRight(row) {
+  let newArray = row.filter(val => val);
+  let missing = gridSize - newArray.length;
+  let zeros = Array(missing).fill(0);
+  newArray = zeros.concat(newArray);
+  return newArray;
+}
+
+function moveLeft(row) {
+  let newArray = row.filter(val => val);
+  let missing = gridSize - newArray.length;
+  let zeros = Array(missing).fill(0);
+  newArray = newArray.concat(zeros);
+  return newArray;
+}
 
 
 
@@ -212,15 +294,17 @@ function slide(row) {
 
 // add numbers that are equivalent when they collide
 function addNumber(row) {
-  for(let i = 3; i >= 0; i--) {
-    let a = row[i];
-    let b = row[i -1];
-    if (a === b) {
-      row[i] = a + b;
-      row[i - 1] = 0;
+  if (keyState === "right movement" || keyState === "left movement"){
+    for(let i = 3; i >= 0; i--) {
+      let a = row[i];
+      let b = row[i -1];
+      if (a === b) {
+        row[i] = a + b;
+        row[i - 1] = 0;
+      }
     }
+    return row;
   }
-  return row;
 }
 
 // create & and display grid
