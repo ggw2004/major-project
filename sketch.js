@@ -189,7 +189,7 @@ function moveUp(grid) {
 
 // move down
 function moveDown(grid) {
-  for (let y=1; y >= 0; y--) {   
+  for (let y=3; y >= 0; y--) {   
     for (let x=3; x >= 0; x--) {
       if (grid[y][x] !== 0) {
         let thisY = y;  
@@ -231,6 +231,7 @@ function moveRight(row) {
   return newArray;
 }
 
+// move
 function moveLeft(row) {
   let newArray = row.filter(val => val);
   let missing = gridSize - newArray.length;
