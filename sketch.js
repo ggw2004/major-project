@@ -14,6 +14,13 @@ let cols = 4;
 let cellWidth;
 let cellHeight;
 let cornerRound = 30;
+
+
+// backgroundColor 
+let backgroundColor;
+let r;
+let g;
+let b;
  
 // state variables
 let gameState;
@@ -24,7 +31,6 @@ let mainTextColor = "black";
 let primaryLetterSize;
 let secondaryLetterSize;
 let instructionLetterSize;
-// let startingTextBoxBuffer = 15;
 let textBoxBuffer = 50;
 let generalTextBoxBuffer;
  
@@ -40,18 +46,35 @@ function setup() {
   }
  
   gameState = "starting window";
+
+  // color change values (set to lime green)
+  r = 50;
+  g = 205;
+  b = 50;
+  backgroundColor = color(r, g, b);
 }
  
  
 // main game loop
 function draw() {
-  background(255);
+  background(backgroundColor);
+
   if (gameState === "starting window") {
+    // color change values (set to lime green)
+    r = 50;
+    g = 205;
+    b = 50;
+    backgroundColor = color(r, g, b);
     displayText();
   }
  
   if (gameState === "instructions"){
     displayText();
+    // color change values (set to lime green)
+    r = 50;
+    g = 205;
+    b = 50;
+    backgroundColor = color(r, g, b);
   }
  
   if (gameState === "game setup") {
@@ -60,23 +83,46 @@ function draw() {
     // spawn first two numbers
     spawnNumber();
     spawnNumber();
- 
+
+    // color change values (set to lime green)
+    r = 255;
+    g = 255;
+    b = 255;
+    backgroundColor = color(r, g, b);
+    
+    // switch states
     gameState = "game loop";
   }
  
   if (gameState === "game loop") {
     cellWidth = width / 4;
     cellHeight = height / 4;
+
+    r = 255;
+    g = 255;
+    b = 255;
+    backgroundColor = color(r, g, b);
    
     create2DArray();
   }
  
   if (gameState === "game over") {
+
+    r = 255;
+    g = 255;
+    b = 255;
+    backgroundColor = color(r, g, b);
+
     create2DArray();
     displayText();
   }
  
   if (gameState === "game complete") {
+    r = 255;
+    g = 255;
+    b = 255;
+    backgroundColor = color(r, g, b);
+
     create2DArray();
     displayText();
   }
@@ -109,25 +155,24 @@ function displayText(){
     let keyInstructionTwo = "'S' and the DOWN Arrow moves all tiles down on the grid";
     let keyInstructionThree = "'A' and the LEFT Arrow moves all tiles left of the grid";
     let keyInstructionFour = "'D' and the RIGHT arrow move all tiles to the right of the grid";
-    let keyInstructionFive = "'B' starts the game";
-    let keyInstructionSix = "'R' restarts the game";
+    let keyInstructionFive = "'R' starts and restarts the game";
     primaryLetterSize = 20;
     secondaryLetterSize = 16;
+    let instructionHeight = height + generalTextBoxBuffer;
    
     fill(mainTextColor);
     textSize(primaryLetterSize);
     textAlign(CENTER);
     textWrap(WORD);
     rectMode(CENTER);
-    text(messageText, width / 2, height / 2, width - textBoxBuffer, height / 5 * 4);
+    text(messageText, width / 2, height / 2, width - textBoxBuffer, height / 5 * 2);
     textSize(secondaryLetterSize);
-    text(controlText, width / 2, height * 3 / 5 + generalTextBoxBuffer, width - textBoxBuffer, height / 16 * 9);
-    text(keyInstructionOne, width / 2, height * 3 / 5 + generalTextBoxBuffer, width - textBoxBuffer, height / 16 * 8);
-    text(keyInstructionTwo, width / 2, height * 3 / 5 + generalTextBoxBuffer, width - textBoxBuffer, height / 16 * 7);
-    text(keyInstructionThree, width / 2, height * 3 / 5 + generalTextBoxBuffer, width - textBoxBuffer, height / 16 * 6);
-    text(keyInstructionFour, width / 2, height * 3 / 5 + generalTextBoxBuffer, width - textBoxBuffer, height / 16 * 5);
-    text(keyInstructionFive, width / 2, height * 3 / 5 + generalTextBoxBuffer, width - textBoxBuffer, height / 16 * 4);
-    text(keyInstructionSix, width / 2, height * 3 / 5 + generalTextBoxBuffer, width - textBoxBuffer, height / 16 * 3);
+    text(controlText, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 15);
+    text(keyInstructionOne, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 14);
+    text(keyInstructionTwo, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 13);
+    text(keyInstructionThree, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 12);
+    text(keyInstructionFour, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 11);
+    text(keyInstructionFive, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 10);
   }
  
  
@@ -138,7 +183,7 @@ function displayText(){
     generalTextBoxBuffer = 15;
     primaryLetterSize = 80;
     secondaryLetterSize = 60;
-    controlTextPlacement = height / 10 * 7 + generalTextBoxBuffer;
+    controlTextPlacement = height / 10 * 6.75 + generalTextBoxBuffer;
   }
  
   // message for if plater won the game
@@ -148,7 +193,7 @@ function displayText(){
     generalTextBoxBuffer = 15;
     primaryLetterSize = 80;
     secondaryLetterSize = 60;
-    controlTextPlacement = height / 10 * 7 + generalTextBoxBuffer;
+    controlTextPlacement = height / 10 * 6.75 + generalTextBoxBuffer;
   }
  
  
@@ -447,12 +492,12 @@ function spawnNumber() {
  
     // place 2 or a 4
     // place 2
-    if (r > 0.25) {
+    if (r > 0.10) {
       grid[numberLocation.x][numberLocation.y] = 2;
     }
     // place 4
     else {
-      grid[numberLocation.x][numberLocation.y] = 4 ;
+      grid[numberLocation.x][numberLocation.y] = 4;
     }
   }
 }
