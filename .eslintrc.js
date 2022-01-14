@@ -44,6 +44,7 @@ module.exports = {
       "getItem": true,
       "clearStorage": true,
       "removeItem": true,
+      "textWrap": true,
       
       "remove": true,
       "canvas": true,
