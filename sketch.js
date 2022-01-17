@@ -15,6 +15,8 @@ let cellWidth;
 let cellHeight;
 let cornerRound = 30;
 
+// NEED TO SHORTEN OR FIND HOW TO STOP WE ARE THE CHAMPIONS SOUND EFFECT
+
 
 // backgroundColor 
 let backgroundColor;
@@ -36,11 +38,17 @@ let generalTextBoxBuffer;
  
 // Sound effects variables
 let popSound;
+let winSound;
+let loseSound;
+let hasWinPlayed;
+let hasLosePlayed;
 
 
 // preload sound or image files
 function preload() {
   popSound = loadSound("assets/pop.wav");
+  winSound = loadSound("assets/We_are_the_champions.wav");
+  loseSound = loadSound("assets/You_lose.wav");
 }
  
  
@@ -77,6 +85,8 @@ function draw() {
   }
  
   if (gameState === "game setup") {
+    hasWinPlayed = false;
+    hasLosePlayed = false;
     createGrid();
  
     // spawn first two numbers
@@ -133,6 +143,25 @@ function setColor(colorOptions){
   }
 
   backgroundColor = color(r, g, b);
+}
+
+// play sound 
+function playSound() {
+  if (gameState === "game loop") {
+    popSound.play();
+    popSound.setVolume(1.0);
+  }
+
+  if (hasWinPlayed) {
+    winSound.play();
+    winSound.setVolume(1.0);
+  }
+
+  if (hasLosePlayed){
+    loseSound.play();
+    loseSound.setVolume(1.0);
+  }
+
 }
  
 // text function
@@ -238,7 +267,10 @@ function keyPressed() {
   // scenarios when the player may want to restart game
   if (gameState === "game loop" || gameState === "instructions" || gameState === "game over" || gameState === "game complete") {
     // keys to start and restart game
-    if (keyCode === 66 || keyCode === 82) { // b = 66 and r = 82
+    if (keyCode === 82) { // r = 82
+      hasWinPlayed = false;
+      hasLosePlayed = false;
+      playSound();
       gameState = "game setup";
     }
   }
@@ -250,35 +282,43 @@ function keyPressed() {
     if (keyCode === 38 || keyCode === 87) { // 37 = UP_ARROW and 87 = w
       direction = "up";
       moveVertical();
+      playSound();
     }
    
     // Key to move down
     else if (keyCode === 40 || keyCode === 83) { // 40 = DOWN_ARROW and 83 = s
       direction = "down";
       moveVertical();
+      playSound();
     }
    
     // Key to move right
     if (keyCode === 39 || keyCode === 68) { // 39 = RIGHT_ARROW and 68 = d
       direction = "right";
       moveHorizontal();
+      playSound();
     }
    
     // Key to move left
     if (keyCode === 37 || keyCode === 65) { // 37 = LEFT_ARROW and 65 = w
       direction = "left";
       moveHorizontal();
+      playSound();
     }
  
     // calls function to check if game is over
     let gameOver = isGameOver();
     if (gameOver) {
+      hasLosePlayed = true;
+      playSound();
       gameState = "game over";
     }
  
     // calls function to check if player won the game
     let gameComplete = isGameWon();
     if (gameComplete) {
+      hasWinPlayed = true;
+      playSound();
       gameState = "game complete";
     }
   }
@@ -499,11 +539,11 @@ function spawnNumber() {
     // place 2 or a 4
     // place 2
     if (r > 0.10) {
-      grid[numberLocation.x][numberLocation.y] = 2;
+      grid[numberLocation.x][numberLocation.y] = 256;
     }
     // place 4
     else {
-      grid[numberLocation.x][numberLocation.y] = 4;
+      grid[numberLocation.x][numberLocation.y] = 512;
     }
   }
 }
