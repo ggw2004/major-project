@@ -34,6 +34,14 @@ let instructionLetterSize;
 let textBoxBuffer = 50;
 let generalTextBoxBuffer;
  
+// Sound effects variables
+let popSound;
+
+
+// preload sound or image files
+function preload() {
+  popSound = loadSound("assets/pop.wav");
+}
  
  
 function setup() {
@@ -48,10 +56,7 @@ function setup() {
   gameState = "starting window";
 
   // color change values (set to lime green)
-  r = 50;
-  g = 205;
-  b = 50;
-  backgroundColor = color(r, g, b);
+  setColor("white");
 }
  
  
@@ -61,20 +66,14 @@ function draw() {
 
   if (gameState === "starting window") {
     // color change values (set to lime green)
-    r = 50;
-    g = 205;
-    b = 50;
-    backgroundColor = color(r, g, b);
+    setColor("lime");
     displayText();
   }
  
   if (gameState === "instructions"){
     displayText();
     // color change values (set to lime green)
-    r = 50;
-    g = 205;
-    b = 50;
-    backgroundColor = color(r, g, b);
+    setColor("lime");
   }
  
   if (gameState === "game setup") {
@@ -85,10 +84,7 @@ function draw() {
     spawnNumber();
 
     // color change values (set to lime green)
-    r = 255;
-    g = 255;
-    b = 255;
-    backgroundColor = color(r, g, b);
+    setColor("white");
     
     // switch states
     gameState = "game loop";
@@ -98,36 +94,46 @@ function draw() {
     cellWidth = width / 4;
     cellHeight = height / 4;
 
-    r = 255;
-    g = 255;
-    b = 255;
-    backgroundColor = color(r, g, b);
+    setColor("white");
    
     create2DArray();
   }
  
   if (gameState === "game over") {
-
-    r = 255;
-    g = 255;
-    b = 255;
-    backgroundColor = color(r, g, b);
+    setColor("white");
 
     create2DArray();
     displayText();
   }
  
   if (gameState === "game complete") {
-    r = 255;
-    g = 255;
-    b = 255;
-    backgroundColor = color(r, g, b);
+    setColor("white");
 
     create2DArray();
     displayText();
   }
 }
  
+
+// set color
+function setColor(colorOptions){
+  
+  // lime
+  if(colorOptions === "lime") {
+    r = 50;
+    g = 205;
+    b = 50;
+  }
+
+  // white
+  if (colorOptions === "white") {
+    r = 255;
+    g = 255;
+    b = 255;
+  }
+
+  backgroundColor = color(r, g, b);
+}
  
 // text function
 function displayText(){
