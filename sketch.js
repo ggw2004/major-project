@@ -16,8 +16,6 @@ let cellHeight;
 let cornerRound = 30;
 
 
-
-
 // backgroundColor 
 let backgroundColor;
 let r;
@@ -27,6 +25,10 @@ let b;
 // state variables
 let gameState;
 let direction;
+
+// temporary variables for presentation
+let setSpawnNumberOne;
+let setSpawnNumberTwo;
 
  
 // text variables
@@ -89,6 +91,9 @@ function draw() {
     hasWinPlayed = false;
     hasLosePlayed = false;
     createGrid();
+
+    setSpawnNumberOne = 2;
+    setSpawnNumberTwo = 4;
  
     // spawn first two numbers
     spawnNumber();
@@ -307,6 +312,19 @@ function keyPressed() {
       direction = "left";
       moveHorizontal();
       playSound();
+    }
+
+
+    // set the spawn numbers to 2 and 4
+    if (keyCode === 49){ // keyCode:49 = key 1
+      setSpawnNumberOne = 2;
+      setSpawnNumberTwo = 4;
+    }
+
+    // set the spawn numbers to 2 and 4
+    if (keyCode === 50){ // keyCode:50 = key 2
+      setSpawnNumberOne = 256;
+      setSpawnNumberTwo = 512;
     }
     
  
@@ -543,11 +561,11 @@ function spawnNumber() {
     // place 2 or a 4
     // place 2
     if (r > 0.10) {
-      grid[numberLocation.x][numberLocation.y] = 2;
+      grid[numberLocation.x][numberLocation.y] = setSpawnNumberOne; // spawn number will normally be set to two but for the presentation will make it be able to set to heigher numbers
     }
     // place 4
     else {
-      grid[numberLocation.x][numberLocation.y] = 4;
+      grid[numberLocation.x][numberLocation.y] = setSpawnNumberTwo; // spawn number will normally be set to two but for the presentation will make it be able to set to heigher numbers
     }
   }
 }
