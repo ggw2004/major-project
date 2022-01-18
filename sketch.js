@@ -540,11 +540,11 @@ function spawnNumber() {
     // place 2 or a 4
     // place 2
     if (r > 0.10) {
-      grid[numberLocation.x][numberLocation.y] = 256;
+      grid[numberLocation.x][numberLocation.y] = 2;
     }
     // place 4
     else {
-      grid[numberLocation.x][numberLocation.y] = 512;
+      grid[numberLocation.x][numberLocation.y] = 4;
     }
   }
 }
