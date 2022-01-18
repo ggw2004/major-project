@@ -191,6 +191,7 @@ function displayText(){
     let keyInstructionThree = "'A' and the LEFT Arrow moves all tiles left of the grid";
     let keyInstructionFour = "'D' and the RIGHT arrow move all tiles to the right of the grid";
     let keyInstructionFive = "'R' starts and restarts the game";
+    let keyInstructionSix = "'I' takes you back to this instruction window.";
     primaryLetterSize = 20;
     secondaryLetterSize = 16;
     let instructionHeight = height + generalTextBoxBuffer;
@@ -268,9 +269,8 @@ function keyPressed() {
   if (gameState === "game loop" || gameState === "instructions" || gameState === "game over" || gameState === "game complete") {
     // keys to start and restart game
     if (keyCode === 82) { // r = 82
-      hasWinPlayed = false;
-      hasLosePlayed = false;
-      playSound();
+      winSound.stop();
+      loseSound.stop();
       gameState = "game setup";
     }
   }
@@ -305,6 +305,7 @@ function keyPressed() {
       moveHorizontal();
       playSound();
     }
+    
  
     // calls function to check if game is over
     let gameOver = isGameOver();
