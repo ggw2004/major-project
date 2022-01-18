@@ -15,7 +15,7 @@ let cellWidth;
 let cellHeight;
 let cornerRound = 30;
 
-// NEED TO SHORTEN OR FIND HOW TO STOP WE ARE THE CHAMPIONS SOUND EFFECT
+
 
 
 // backgroundColor 
@@ -27,6 +27,7 @@ let b;
 // state variables
 let gameState;
 let direction;
+
  
 // text variables
 let mainTextColor = "black";
@@ -186,29 +187,29 @@ function displayText(){
   if (gameState === "instructions") {
     messageText = "2048 is a matching game where your job is to combine matching tiles to create larger numbered tiles with the goal of reaching a tile with the value of 2048. When there are no more moves left, and the board is full, the game is over.";
     controlText = "Game Controls:";
-    let keyInstructionOne = "W' and UP Arrow move all tiles up on the grid";
+    let keyInstructionOne = "'W' and UP Arrow move all tiles up on the grid";
     let keyInstructionTwo = "'S' and the DOWN Arrow moves all tiles down on the grid";
     let keyInstructionThree = "'A' and the LEFT Arrow moves all tiles left of the grid";
     let keyInstructionFour = "'D' and the RIGHT arrow move all tiles to the right of the grid";
     let keyInstructionFive = "'R' starts and restarts the game";
-    let keyInstructionSix = "'I' takes you back to this instruction window.";
     primaryLetterSize = 20;
     secondaryLetterSize = 16;
     let instructionHeight = height + generalTextBoxBuffer;
-   
+    
+    textStyle(BOLD);
     fill(mainTextColor);
     textSize(primaryLetterSize);
     textAlign(CENTER);
     textWrap(WORD);
     rectMode(CENTER);
-    text(messageText, width / 2, height / 2, width - textBoxBuffer, height / 5 * 2);
+    text(messageText, width / 2, height / 2, width - textBoxBuffer, height / 5 * 3);
     textSize(secondaryLetterSize);
-    text(controlText, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 15);
-    text(keyInstructionOne, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 14);
-    text(keyInstructionTwo, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 13);
-    text(keyInstructionThree, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 12);
-    text(keyInstructionFour, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 11);
-    text(keyInstructionFive, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 10);
+    text(controlText, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 15.5);
+    text(keyInstructionOne, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 13.5);
+    text(keyInstructionTwo, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 11.5);
+    text(keyInstructionThree, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 9.5);
+    text(keyInstructionFour, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 7.5);
+    text(keyInstructionFive, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 5.5);
   }
  
  
@@ -237,8 +238,10 @@ function displayText(){
     fill(mainTextColor);
     textSize(primaryLetterSize);
     textAlign(CENTER);
+    textStyle(BOLD);
     text(messageText, width / 2, height / 2);
     fill(mainTextColor);
+    textStyle(ITALIC);
     textSize(secondaryLetterSize);
     text(controlText, width / 2, controlTextPlacement);
   }
@@ -673,6 +676,7 @@ function create2DArray() {
   for (let i = 0; i < gridSize; i ++) {
     for (let j = 0; j < gridSize; j ++ ){
       noFill();
+      textStyle(BOLD);
       strokeWeight(2);
       let val = grid[i][j];
       let s = val.toString();
