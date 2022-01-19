@@ -6,5 +6,5 @@
   - The text is difficult to read on the beginning screen.
  
  - What I've done:
-  - Lenghened the space between the control instructions.
-  - Bolded certain text or increased its size and put it in italics making it easier to read.
+   - Lenghened the space between the control instructions.
+   - Bolded certain text or increased its size and put it in italics making it easier to read.
