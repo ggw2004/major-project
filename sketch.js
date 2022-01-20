@@ -1,6 +1,6 @@
 // 2048 Rip Off Version
 // George Williams
-// Date
+// Date 
 //
 // Extra for Experts:
 // - describe what you did to take this project "above and beyond"
