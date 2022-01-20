@@ -188,7 +188,7 @@ function displayText(){
   }
  
  
-  // game instuction text
+  // game instruction text
   if (gameState === "instructions") {
     messageText = "2048 is a matching game where your job is to combine matching tiles to create larger numbered tiles with the goal of reaching a tile with the value of 2048. When there are no more moves left, and the board is full, the game is over.";
     controlText = "Game Controls:";
@@ -201,6 +201,7 @@ function displayText(){
     secondaryLetterSize = 16;
     let instructionHeight = height + generalTextBoxBuffer;
     
+    // text placement for instructions
     textStyle(BOLD);
     fill(mainTextColor);
     textSize(primaryLetterSize);
@@ -238,7 +239,7 @@ function displayText(){
     controlTextPlacement = height / 10 * 6.75 + generalTextBoxBuffer;
   }
  
- 
+  // text placement for anything but instructions
   if (gameState !== "instructions") {
     fill(mainTextColor);
     textSize(primaryLetterSize);
@@ -574,7 +575,8 @@ function spawnNumber() {
 // add numbers that are equivalent when they collide
 function addNumber(row) {
  
-  // horizontal movement addition
+  // horizontal movement cell addition
+  // right movement cell addition
   if (direction === "right"){
     for(let i = 3; i >= 0; i--) {
       let a = row[i];
@@ -586,7 +588,8 @@ function addNumber(row) {
     }
     return row;
   }
- 
+
+  // left movement cell addition
   if (direction === "left"){
     for(let i = 0; i < gridSize; i++) {
       let a = row[i];
@@ -600,6 +603,7 @@ function addNumber(row) {
   }
  
   // vertical movement addition
+  // up movement cell addition
   if (direction === "up") {
     for (let y = 1; y < gridSize; y ++) {
       for (let x = 0; x < gridSize; x ++ ){
@@ -613,7 +617,8 @@ function addNumber(row) {
     }
     return grid;
   }
- 
+
+  // left movement cell addition
   if (direction === "down") {
     for (let y=3; y >= 1; y--) {  
       for (let x=3; x >= 0; x--) {
@@ -720,4 +725,3 @@ function create2DArray() {
     }
   }
 }
-
