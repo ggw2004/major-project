@@ -14,6 +14,8 @@ let cols = 4;
 let cellWidth;
 let cellHeight;
 let cornerRound = 30;
+let scoreText = "Score:";
+let scoreCounter = 0;
 
 
 // backgroundColor 
@@ -75,18 +77,23 @@ function setup() {
 function draw() {
   background(backgroundColor);
 
+
+  // starting window call functions
   if (gameState === "starting window") {
     // color change values (set to lime green)
     setColor("lime");
     displayText();
   }
- 
+  
+
+  // instruction call functions
   if (gameState === "instructions"){
     displayText();
     // color change values (set to lime green)
     setColor("lime");
   }
  
+  // set up game
   if (gameState === "game setup") {
     hasWinPlayed = false;
     hasLosePlayed = false;
@@ -94,10 +101,14 @@ function draw() {
 
     setSpawnNumberOne = 2;
     setSpawnNumberTwo = 4;
+    
  
     // spawn first two numbers
     spawnNumber();
     spawnNumber();
+
+    // reset score counter
+    scoreCounter = 0;
 
     // color change values (set to lime green)
     setColor("white");
@@ -105,7 +116,8 @@ function draw() {
     // switch states
     gameState = "game loop";
   }
- 
+  
+  // main game
   if (gameState === "game loop") {
     cellWidth = width / 4;
     cellHeight = height / 4;
@@ -113,8 +125,13 @@ function draw() {
     setColor("white");
    
     create2DArray();
+
+    // call html score
+    select('#scoreText').html(scoreText);
+    select('#score').html(scoreCounter);
   }
  
+  // game lost call functions
   if (gameState === "game over") {
     setColor("white");
 
@@ -122,6 +139,7 @@ function draw() {
     displayText();
   }
  
+  // game won call functions
   if (gameState === "game complete") {
     setColor("white");
 
@@ -584,6 +602,7 @@ function addNumber(row) {
       if (a === b) {
         row[i] = a + b;
         row[i - 1] = 0;
+        updateScore(a,b);
       }
     }
     return row;
@@ -597,6 +616,7 @@ function addNumber(row) {
       if (a === b) {
         row[i] = a + b;
         row[i + 1] = 0;
+        updateScore(a,b);
       }
     }
     return row;
@@ -612,6 +632,7 @@ function addNumber(row) {
         if (a === b) {
           grid[y][x] = a + b;
           grid[y-1][x] = 0;
+          updateScore(a,b);
         }
       }
     }
@@ -627,6 +648,7 @@ function addNumber(row) {
         if (a === b) {
           grid[y][x] = a + b;
           grid[y - 1][x] = 0;
+          updateScore(a,b);
         }
       }
     }
@@ -634,7 +656,11 @@ function addNumber(row) {
   }
  
 }
- 
+
+// update score
+function updateScore(a,b) {
+  scoreCounter += a + b;
+}
  
 // set tile colors and sizes
 let tiles = {

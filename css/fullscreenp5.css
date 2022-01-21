@@ -15,4 +15,16 @@ body {
 ::-webkit-scrollbar {
     display: none;
 }
- 
+/* Score text position */
+#score {
+    position: absolute;
+    left: 37%;
+    top: -1%;
+}
+
+/* Score counter position */
+#scoreText {
+    position: absolute;
+    left: 30%;
+    top: -1%;
+}
