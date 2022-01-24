@@ -11,7 +11,7 @@
 
 ## Beta tester #2 Arman
 - What he said 
-   - you hace the entire working game
+   - you have the entire working game
    - make tiles slide to their locations
    - add control over music/sound fx (volume, mute button)
    - add a score
