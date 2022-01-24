@@ -88,9 +88,6 @@ function draw() {
     // color change values (set to lime green)
     setColor("lime");
     displayText();
-    
-
-
   }
   
 
