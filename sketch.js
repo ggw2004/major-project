@@ -127,8 +127,8 @@ function draw() {
     create2DArray();
 
     // call html score
-    select('#scoreText').html(scoreText);
-    select('#score').html(scoreCounter);
+    select("#scoreText").html(scoreText);
+    select("#score").html(scoreCounter);
   }
  
   // game lost call functions
