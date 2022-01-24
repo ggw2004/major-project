@@ -16,6 +16,9 @@ let cellHeight;
 let cornerRound = 30;
 let scoreText = "Score:";
 let scoreCounter = 0;
+let volumeText = "Volume:";
+let slider;
+let displaySlider = true;
 
 
 // backgroundColor 
@@ -54,6 +57,8 @@ function preload() {
   popSound = loadSound("assets/pop.wav");
   winSound = loadSound("assets/We_are_the_champions.wav");
   loseSound = loadSound("assets/You_lose.wav");
+
+
 }
  
  
@@ -83,6 +88,9 @@ function draw() {
     // color change values (set to lime green)
     setColor("lime");
     displayText();
+    
+
+
   }
   
 
@@ -91,6 +99,7 @@ function draw() {
     displayText();
     // color change values (set to lime green)
     setColor("lime");
+
   }
  
   // set up game
@@ -115,6 +124,13 @@ function draw() {
     
     // switch states
     gameState = "game loop";
+
+    if (displaySlider) {
+      // create slider sound adjustment values
+      slider = createSlider(0, 1, 1, 0.1);
+      displaySlider = false;
+    }
+
   }
   
   // main game
@@ -129,6 +145,7 @@ function draw() {
     // call html score
     select("#scoreText").html(scoreText);
     select("#score").html(scoreCounter);
+    select("#volumeText").html(volumeText);
   }
  
   // game lost call functions
@@ -173,17 +190,17 @@ function setColor(colorOptions){
 function playSound() {
   if (gameState === "game loop") {
     popSound.play();
-    popSound.setVolume(1.0);
+    popSound.setVolume(slider.value());
   }
 
   if (hasWinPlayed) {
     winSound.play();
-    winSound.setVolume(1.0);
+    winSound.setVolume(slider.value());
   }
 
   if (hasLosePlayed){
     loseSound.play();
-    loseSound.setVolume(1.0);
+    loseSound.setVolume(slider.value());
   }
 
 }
@@ -215,6 +232,7 @@ function displayText(){
     let keyInstructionThree = "'A' and the LEFT Arrow moves all tiles left of the grid";
     let keyInstructionFour = "'D' and the RIGHT arrow move all tiles to the right of the grid";
     let keyInstructionFive = "'R' starts and restarts the game";
+    let keyInstructionSix = "When the game starts the slider that appears to the right controls volume";
     primaryLetterSize = 20;
     secondaryLetterSize = 16;
     let instructionHeight = height + generalTextBoxBuffer;
@@ -228,12 +246,13 @@ function displayText(){
     rectMode(CENTER);
     text(messageText, width / 2, height / 2, width - textBoxBuffer, height / 5 * 3);
     textSize(secondaryLetterSize);
-    text(controlText, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 15.5);
-    text(keyInstructionOne, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 13.5);
-    text(keyInstructionTwo, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 11.5);
-    text(keyInstructionThree, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 9.5);
-    text(keyInstructionFour, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 7.5);
-    text(keyInstructionFive, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 5.5);
+    text(controlText, width / 2, instructionHeight, width - textBoxBuffer, height);
+    text(keyInstructionOne, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 14);
+    text(keyInstructionTwo, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 12);
+    text(keyInstructionThree, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 10);
+    text(keyInstructionFour, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 8);
+    text(keyInstructionFive, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 6);
+    text(keyInstructionSix, width / 2, instructionHeight, width - textBoxBuffer, height / 16 * 4);
   }
  
  
@@ -269,6 +288,9 @@ function displayText(){
     textSize(secondaryLetterSize);
     text(controlText, width / 2, controlTextPlacement);
   }
+  
+
+
  
  
 }
