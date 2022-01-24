@@ -124,7 +124,7 @@ function draw() {
 
     if (displaySlider) {
       // create slider sound adjustment values
-      slider = createSlider(0, 1, 1, 0.1);
+      slider = createSlider(0, 1, 1, 0.05);
       displaySlider = false;
     }
 
