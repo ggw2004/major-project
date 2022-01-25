@@ -2,7 +2,7 @@
 
 ## Description
 
-2048. In a four by four grid, slide numbered tiles, which add together once they collide, in an attempt to create a tile with the number 2048; however, the player can continue to add tiles reaching numbers greater than 2048.
+2048. In a four by four grid, slide numbered tiles, which add together once they collide, in an attempt to create a tile with the number 2048.
 
 
 ## Must Have List
