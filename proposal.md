@@ -12,7 +12,7 @@
 - At the beginning of the game two numbers (either a 2 or a 4) appear in a ranodm cell on the four by four grid
 - A new block (either a 2 or a 4) appears in an empty cell after every move
 - Blocks slide to the fartherest vacent cell in the direction indicated by the arrow or key pressed (up, down, right, left, w, s, a, d)
-- If two cells of the same value collide with one another they will add together. The cell at the farthest point on the grid of the indicated direction will set to the added value and the other cell being set to as zero (vacant). 
+- If two cells of the same value add together,the cell at the farthest point on the grid of the indicated direction will be set to the added value and the other cell will be set to zero (vacant). 
    - If a neighbouring cell is being moved in the same row or column of the two recently added cells, the now vacant cell will be set to the value of the neighbour cell moving in      the indicated direction. The neigbouring cell will be set to zero.
 - Blocks do not slide off of the four by four grid
 
