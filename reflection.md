@@ -13,5 +13,5 @@
     - Yes I completed the need to have list.
     
  ## What are you most pround of?
- 
-    - In this project I would say I am most proud of the vertical movement functions as this is what I struggled with the most. Creating this function may have been easy for many others; however, as creating this function was a challenge for me, finallying solving this problem after working on it for a long time, makes me pround of it.
+   
+   - In this project I would say I am most proud of the vertical movement functions as this is what I struggled with the most. Creating this function may have been easy for many others; however, as creating this function was a challenge for me, finallying solving this problem after working on it for a long time, makes me pround of it.
