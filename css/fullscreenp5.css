@@ -18,15 +18,15 @@ body {
 /* Score text position */
 #score {
     position: absolute;
-    left: 37%;
-    top: -1%;
+    left: 33%;
+    top: -4%;
 }
 
 /* Score counter position */
 #scoreText {
     position: absolute;
-    left: 30%;
-    top: -1%;
+    left: 26%;
+    top: -4%;
 }
 
 /* Score counter position */
