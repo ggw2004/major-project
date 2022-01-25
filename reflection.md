@@ -9,7 +9,6 @@
    - The most difficult challenge I faced during the construction of this project was the vertical movement functions. This was the most difficult part of the project as I struggled to keep track of the grid boundaries and values; therefore, in the early stages of creating the vertical movement functions, it would either check for a cell in the grid that did not exist, would be caught in an infinite loop of changing the value of one cell with the value of its neighbour, or would not move the tiles to the furthest vacant cell on the grid.
     
  ## Did you Complete the Needs to Have List?
- 
     - Yes I completed the need to have list.
     
  ## What are you most pround of?
