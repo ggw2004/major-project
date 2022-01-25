@@ -9,15 +9,15 @@
 
 - Four by four grid
 - The increase of equal numbers once they collide
-- At the beginning of the game two numbers appear in a ranodm spot on the four by four grid
-- A new block containing a number appears after every move
-- Blocks slide to the fartherest point in the direction indicated by the arrow or key pressed (up, down, right, left, w, s, a, d), and only add together if they contain the same value
+- At the beginning of the game two numbers (either a 2 or a 4) appear in a ranodm cell on the four by four grid
+- A new block (either a 2 or a 4) appears in an empty cell after every move
+- Blocks slide to the fartherest vacent cell in the direction indicated by the arrow or key pressed (up, down, right, left, w, s, a, d)
+- If two cells of the same value colldie with one another they will add together
 - Blocks do not slide off of the four by four grid
 
 
 ## Nice to Have List
 
-- The new numbers whichs appear after a move is 2 or 4 not just 2
 - Reset/restart button
 - Color of the block is based on its numerical value
 - the four by four grid appears in the middle of the screen
