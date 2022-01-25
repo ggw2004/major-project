@@ -21,8 +21,8 @@
 
 - Reset/restart button
 - Color of the block is based on its numerical value
-- the four by four grid appears in the middle of the screen
-- the numbers are in the center of the square
+- The four by four grid appears in the middle of the screen
+- The numbers are in the center of the square
 - Background music / sound effects
 
 
